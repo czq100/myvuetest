@@ -1,32 +1,29 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <div>
+    <div style="width:120px;height:50px;border:1px solid;">
+      <Item
+        :isActive="isActive==`dianjing`"
+        @clickaa="clickaa"
+      >电竞</Item>
     </div>
-    <router-view />
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import Item from "./components/Item";
+export default {
+  components: { Item },
+  data() {
+    return { isActive:"" };
+  },
+  methods: {
+    clickaa(e) {
+      this.isActive = !this.isActive;
+      console.log(e);
+    },
+  },
+};
+</script>
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
+<style>
 </style>
