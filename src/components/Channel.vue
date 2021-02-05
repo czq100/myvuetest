@@ -1,17 +1,30 @@
 <template>
   <div v-if="channels!=null">
-    <div v-for="item in channels" :key="item.strKey" class="item">
-      <Item :isActive="strKey==item.strKey" @clicka2="clicka2" @click.native="strKey=item.strKey">
+    <div
+      v-for="(item,index) of channels"
+      :key="item.strKey"
+      class="item"
+    >
+      <Item
+        :isActive="strKey==item.strKey"
+        @clicka2="clicka2"
+        @click.native="strKey=item.strKey"
+      >
         <div class="inner">
           <span class="name">{{item.strKey}}</span>
           <span class="number">{{item.value}}</span>
         </div>
       </Item>
+      <Icon
+        :num="index%7"
+        extraClass="myiconfont"
+      />
     </div>
   </div>
 </template>
 
 <script>
+import Icon from "./Icon.vue";
 import Item from "./Item.vue";
 import channelService from "../service/industry";
 export default {
@@ -23,11 +36,11 @@ export default {
       default: false,
     },
   },
-  components: { Item },
+  components: { Item, Icon },
   methods: {
     clicka2(e) {
       this.$emit("clicka1", e);
-    }
+    },
   },
   data() {
     return {
@@ -51,5 +64,9 @@ export default {
 .name {
 }
 .number {
+}
+.myiconfont {
+  font-size: 20px;
+  margin-left: 5px;
 }
 </style>
